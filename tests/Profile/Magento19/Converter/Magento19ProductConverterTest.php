@@ -17,11 +17,11 @@ use Swag\MigrationMagento\Profile\Magento19\Converter\Magento19ProductConverter;
 use Swag\MigrationMagento\Profile\Magento19\Magento19Profile;
 use Swag\MigrationMagento\Profile\Magento19\Premapping\Magento19OrderStateReader;
 use Swag\MigrationMagento\Test\Mock\Migration\Mapping\DummyMagentoMappingService;
+use SwagMigrationAssistant\Exception\MigrationException;
 use SwagMigrationAssistant\Migration\Connection\SwagMigrationConnectionEntity;
 use SwagMigrationAssistant\Migration\DataSelection\DefaultEntities;
 use SwagMigrationAssistant\Migration\MigrationContext;
 use SwagMigrationAssistant\Migration\MigrationContextInterface;
-use SwagMigrationAssistant\Profile\Shopware\Exception\ParentEntityForChildNotFoundException;
 use SwagMigrationAssistant\Test\Mock\Migration\Logging\DummyLoggingService;
 use SwagMigrationAssistant\Test\Mock\Migration\Media\DummyMediaFileService;
 
@@ -271,7 +271,7 @@ class Magento19ProductConverterTest extends TestCase
         $productData = require __DIR__ . '/../../../_fixtures/product_data.php';
 
         $context = Context::createDefaultContext();
-        $this->expectException(ParentEntityForChildNotFoundException::class);
+        $this->expectException(MigrationException::class);
         $this->expectExceptionMessage('Parent entity for "product: 498" child not found.');
         $this->productConverter->convert($productData[1], $context, $this->migrationContext);
     }

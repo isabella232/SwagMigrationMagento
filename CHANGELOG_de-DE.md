@@ -1,3 +1,6 @@
+# 6.0.0
+- NTR - Unterstützung der Abhängigkeit Migration-Assistant ~10.0
+
 # 5.1.0
 - NTR - Unterstützung der Abhängigkeit Migration-Assistant ~7.0
 

@@ -17,6 +17,7 @@ use Shopware\Core\System\Language\LanguageEntity;
 use Swag\MigrationMagento\Migration\Mapping\MagentoMappingServiceInterface;
 use Swag\MigrationMagento\Profile\Magento\DataSelection\DataSet\MediaDataSet;
 use Swag\MigrationMagento\Profile\Magento\DataSelection\DefaultEntities as MagentoDefaultEntities;
+use SwagMigrationAssistant\Exception\MigrationException;
 use SwagMigrationAssistant\Migration\Converter\ConvertStruct;
 use SwagMigrationAssistant\Migration\DataSelection\DefaultEntities;
 use SwagMigrationAssistant\Migration\Logging\Log\EmptyNecessaryFieldRunLog;
@@ -25,7 +26,6 @@ use SwagMigrationAssistant\Migration\Logging\LoggingServiceInterface;
 use SwagMigrationAssistant\Migration\Mapping\MappingServiceInterface;
 use SwagMigrationAssistant\Migration\Media\MediaFileServiceInterface;
 use SwagMigrationAssistant\Migration\MigrationContextInterface;
-use SwagMigrationAssistant\Profile\Shopware\Exception\ParentEntityForChildNotFoundException;
 
 #[Package('services-settings')]
 abstract class ProductConverter extends MagentoConverter
@@ -409,7 +409,7 @@ abstract class ProductConverter extends MagentoConverter
     }
 
     /**
-     * @throws ParentEntityForChildNotFoundException
+     * @throws MigrationException
      */
     protected function setParent(array &$converted, array &$data): void
     {
@@ -421,7 +421,7 @@ abstract class ProductConverter extends MagentoConverter
         );
 
         if ($parentMapping === null) {
-            throw new ParentEntityForChildNotFoundException(DefaultEntities::PRODUCT, $this->oldIdentifier);
+            throw MigrationException::parentEntityForChildNotFound(DefaultEntities::PRODUCT, $this->oldIdentifier);
         }
 
         $converted['parentId'] = $parentMapping['entityUuid'];

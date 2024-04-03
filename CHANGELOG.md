@@ -1,3 +1,6 @@
+# 6.0.0
+- NTR - Support for migration assistant ~10.0
+
 # 5.1.0
 - NTR - Support for migration assistant ~7.0
 

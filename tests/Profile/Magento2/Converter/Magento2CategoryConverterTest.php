@@ -22,11 +22,11 @@ use Swag\MigrationMagento\Profile\Magento22\Magento22Profile;
 use Swag\MigrationMagento\Profile\Magento23\Converter\Magento23CategoryConverter;
 use Swag\MigrationMagento\Profile\Magento23\Magento23Profile;
 use Swag\MigrationMagento\Test\Mock\Migration\Mapping\DummyMagentoMappingService;
+use SwagMigrationAssistant\Exception\MigrationException;
 use SwagMigrationAssistant\Migration\Connection\SwagMigrationConnectionEntity;
 use SwagMigrationAssistant\Migration\DataSelection\DefaultEntities;
 use SwagMigrationAssistant\Migration\MigrationContext;
 use SwagMigrationAssistant\Migration\MigrationContextInterface;
-use SwagMigrationAssistant\Profile\Shopware\Exception\ParentEntityForChildNotFoundException;
 use SwagMigrationAssistant\Test\Mock\Migration\Logging\DummyLoggingService;
 use SwagMigrationAssistant\Test\Mock\Migration\Media\DummyMediaFileService;
 use Symfony\Component\HttpFoundation\Response;
@@ -467,8 +467,7 @@ class Magento2CategoryConverterTest extends TestCase
         try {
             $this->categoryConverter20->convert($categoryData[2], $context, $this->migrationContext20);
         } catch (\Exception $e) {
-            /* @var ParentEntityForChildNotFoundException $e */
-            static::assertInstanceOf(ParentEntityForChildNotFoundException::class, $e);
+            static::assertInstanceOf(MigrationException::class, $e);
             static::assertSame(Response::HTTP_NOT_FOUND, $e->getStatusCode());
         }
     }
@@ -482,8 +481,7 @@ class Magento2CategoryConverterTest extends TestCase
         try {
             $this->categoryConverter21->convert($categoryData[2], $context, $this->migrationContext21);
         } catch (\Exception $e) {
-            /* @var ParentEntityForChildNotFoundException $e */
-            static::assertInstanceOf(ParentEntityForChildNotFoundException::class, $e);
+            static::assertInstanceOf(MigrationException::class, $e);
             static::assertSame(Response::HTTP_NOT_FOUND, $e->getStatusCode());
         }
     }
@@ -497,8 +495,7 @@ class Magento2CategoryConverterTest extends TestCase
         try {
             $this->categoryConverter22->convert($categoryData[2], $context, $this->migrationContext22);
         } catch (\Exception $e) {
-            /* @var ParentEntityForChildNotFoundException $e */
-            static::assertInstanceOf(ParentEntityForChildNotFoundException::class, $e);
+            static::assertInstanceOf(MigrationException::class, $e);
             static::assertSame(Response::HTTP_NOT_FOUND, $e->getStatusCode());
         }
     }
@@ -512,8 +509,7 @@ class Magento2CategoryConverterTest extends TestCase
         try {
             $this->categoryConverter23->convert($categoryData[2], $context, $this->migrationContext23);
         } catch (\Exception $e) {
-            /* @var ParentEntityForChildNotFoundException $e */
-            static::assertInstanceOf(ParentEntityForChildNotFoundException::class, $e);
+            static::assertInstanceOf(MigrationException::class, $e);
             static::assertSame(Response::HTTP_NOT_FOUND, $e->getStatusCode());
         }
     }
