@@ -23,8 +23,6 @@ abstract class Magento2OrderConverter extends OrderConverter
     protected $billingAddress;
 
     /**
-     * @psalm-suppress PossiblyInvalidArgument
-     *
      * @throws AssociationEntityRequiredMissingException
      */
     protected function convertOrderCustomer(array &$converted, array &$data): bool

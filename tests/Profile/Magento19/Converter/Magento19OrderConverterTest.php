@@ -5,8 +5,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Swag\MigrationMagento\Test\Profile\Magento\Converter;
+namespace Swag\MigrationMagento\Test\Profile\Magento19\Converter;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Checkout\Cart\Tax\TaxCalculator;
 use Shopware\Core\Framework\Context;
@@ -384,9 +385,7 @@ class Magento19OrderConverterTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider requiredProperties
-     */
+    #[DataProvider('requiredProperties')]
     public function testConvertWithoutRequiredProperties(string $property, ?string $value): void
     {
         $orderData = require __DIR__ . '/../../../_fixtures/order_data.php';

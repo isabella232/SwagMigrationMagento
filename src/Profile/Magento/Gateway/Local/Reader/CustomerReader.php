@@ -16,10 +16,6 @@ use SwagMigrationAssistant\Migration\TotalStruct;
 #[Package('services-settings')]
 abstract class CustomerReader extends AbstractReader
 {
-    /**
-     * @psalm-suppress PossiblyInvalidArgument
-     * @psalm-suppress ReferenceConstraintViolation
-     */
     public function read(MigrationContextInterface $migrationContext, array $params = []): array
     {
         $this->setConnection($migrationContext);

@@ -9,13 +9,17 @@ namespace Swag\MigrationMagento\Migration\Mapping\Registry;
 
 use Shopware\Core\Framework\Log\Package;
 
+/**
+ * @phpstan-type MappingArray array<string, array{symbol: string, name: string, translations: array<string, string>}>
+ * @template-extends AbstractMappingRegistry<MappingArray>
+ */
 #[Package('services-settings')]
 class CurrencyRegistry extends AbstractMappingRegistry
 {
     /**
-     * @var array
+     * @var MappingArray
      */
-    protected static $mapping = [
+    protected static array $mapping = [
         'CHF' => [
             'symbol' => 'CHF',
             'name' => 'Swiss franc',

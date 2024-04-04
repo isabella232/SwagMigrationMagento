@@ -549,9 +549,6 @@ abstract class ProductConverter extends MagentoConverter
         return $price;
     }
 
-    /**
-     * @psalm-suppress PossiblyNullArrayAccess
-     */
     protected function getPrices(array $prices, array $converted): array
     {
         foreach ($prices as $key => &$price) {

@@ -33,9 +33,6 @@ SQL;
         return new TotalStruct(DefaultEntities::ORDER, $total);
     }
 
-    /**
-     * @psalm-suppress PossiblyInvalidArgument
-     */
     public function read(MigrationContextInterface $migrationContext, array $params = []): array
     {
         $this->setConnection($migrationContext);

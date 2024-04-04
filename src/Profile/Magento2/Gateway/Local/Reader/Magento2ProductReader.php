@@ -17,9 +17,6 @@ use Swag\MigrationMagento\Profile\Magento\Gateway\Local\Reader\ProductReader;
 #[Package('services-settings')]
 abstract class Magento2ProductReader extends ProductReader
 {
-    /**
-     * @psalm-suppress DocblockTypeContradiction
-     */
     protected function fetchProductMedia(array $ids): array
     {
         $sql = <<<SQL

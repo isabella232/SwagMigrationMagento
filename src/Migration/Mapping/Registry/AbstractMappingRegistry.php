@@ -9,13 +9,17 @@ namespace Swag\MigrationMagento\Migration\Mapping\Registry;
 
 use Shopware\Core\Framework\Log\Package;
 
+/**
+ * @template TMappingArray of array
+ * @template-implements MappingRegistryInterface<TMappingArray>
+ */
 #[Package('services-settings')]
 class AbstractMappingRegistry implements MappingRegistryInterface
 {
     /**
-     * @var array
+     * @var TMappingArray
      */
-    protected static $mapping = [];
+    protected static array $mapping = [];
 
     public static function get(string $identifier): ?array
     {
