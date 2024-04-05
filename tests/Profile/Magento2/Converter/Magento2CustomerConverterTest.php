@@ -7,6 +7,7 @@
 
 namespace Swag\MigrationMagento\Test\Profile\Magento2\Converter;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Defaults;
 use Shopware\Core\Framework\Context;
@@ -29,6 +30,7 @@ use SwagMigrationAssistant\Migration\DataSelection\DefaultEntities;
 use SwagMigrationAssistant\Migration\MigrationContext;
 use SwagMigrationAssistant\Migration\MigrationContextInterface;
 use SwagMigrationAssistant\Test\Mock\Migration\Logging\DummyLoggingService;
+use function str_replace;
 
 #[Package('services-settings')]
 class Magento2CustomerConverterTest extends TestCase
@@ -247,9 +249,7 @@ class Magento2CustomerConverterTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider requiredProperties
-     */
+    #[DataProvider('requiredProperties')]
     public function testConvertWithoutRequiredProperties(string $property, ?string $value): void
     {
         $customerData = require __DIR__ . '/../../../_fixtures/customer_data.php';
@@ -368,9 +368,7 @@ class Magento2CustomerConverterTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider requiredAddressProperties
-     */
+    #[DataProvider('requiredAddressProperties')]
     public function testConvertWithoutRequiredAddressPropertiesForBillingDefault(string $property, ?string $value): void
     {
         $customerData = require __DIR__ . '/../../../_fixtures/customer_data.php';
@@ -406,9 +404,7 @@ class Magento2CustomerConverterTest extends TestCase
         static::assertSame($logs[1]['parameters']['replacementField'], 'default shipping address');
     }
 
-    /**
-     * @dataProvider requiredAddressProperties
-     */
+    #[DataProvider('requiredAddressProperties')]
     public function testConvertWithoutRequiredAddressPropertiesForShippingDefault(string $property, ?string $value): void
     {
         $customerData = require __DIR__ . '/../../../_fixtures/customer_data.php';
@@ -444,9 +440,7 @@ class Magento2CustomerConverterTest extends TestCase
         static::assertSame($logs[1]['parameters']['replacementField'], 'default billing address');
     }
 
-    /**
-     * @dataProvider requiredAddressProperties
-     */
+    #[DataProvider('requiredAddressProperties')]
     public function testConvertWithoutRequiredAddressPropertiesForDefaultBillingAndShipping(string $property, ?string $value): void
     {
         $customerData = require __DIR__ . '/../../../_fixtures/customer_data.php';

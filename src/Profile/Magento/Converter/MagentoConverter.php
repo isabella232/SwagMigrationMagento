@@ -140,9 +140,6 @@ abstract class MagentoConverter extends Converter
         return $result;
     }
 
-    /**
-     * @psalm-suppress PossiblyInvalidArrayOffset
-     */
     protected function getTranslations(array $translations, array $defaultEntities, Context $context, ?int $attributeSetId = null): array
     {
         $connection = $this->migrationContext->getConnection();

@@ -5,7 +5,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Swag\MigrationMagento\Test\Profile\Magento\Converter;
+namespace Swag\MigrationMagento\Test\Profile\Magento19\Converter;
 
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Framework\Context;
@@ -16,11 +16,11 @@ use Swag\MigrationMagento\Profile\Magento\DataSelection\DefaultEntities as Magen
 use Swag\MigrationMagento\Profile\Magento19\Converter\Magento19CategoryConverter;
 use Swag\MigrationMagento\Profile\Magento19\Magento19Profile;
 use Swag\MigrationMagento\Test\Mock\Migration\Mapping\DummyMagentoMappingService;
+use SwagMigrationAssistant\Exception\MigrationException;
 use SwagMigrationAssistant\Migration\Connection\SwagMigrationConnectionEntity;
 use SwagMigrationAssistant\Migration\DataSelection\DefaultEntities;
 use SwagMigrationAssistant\Migration\MigrationContext;
 use SwagMigrationAssistant\Migration\MigrationContextInterface;
-use SwagMigrationAssistant\Profile\Shopware\Exception\ParentEntityForChildNotFoundException;
 use SwagMigrationAssistant\Test\Mock\Migration\Logging\DummyLoggingService;
 use SwagMigrationAssistant\Test\Mock\Migration\Media\DummyMediaFileService;
 use Symfony\Component\HttpFoundation\Response;
@@ -182,8 +182,7 @@ class Magento19CategoryConverterTest extends TestCase
         try {
             $this->categoryConverter->convert($categoryData[2], $context, $this->migrationContext);
         } catch (\Exception $e) {
-            /* @var ParentEntityForChildNotFoundException $e */
-            static::assertInstanceOf(ParentEntityForChildNotFoundException::class, $e);
+            static::assertInstanceOf(MigrationException::class, $e);
             static::assertSame(Response::HTTP_NOT_FOUND, $e->getStatusCode());
         }
     }

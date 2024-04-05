@@ -16,9 +16,6 @@ use SwagMigrationAssistant\Migration\TotalStruct;
 #[Package('services-settings')]
 abstract class MediaReader extends AbstractReader
 {
-    /**
-     * @psalm-suppress PossiblyInvalidArgument
-     */
     public function read(MigrationContextInterface $migrationContext, array $params = []): array
     {
         $this->setConnection($migrationContext);

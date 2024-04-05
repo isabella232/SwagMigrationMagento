@@ -9,13 +9,17 @@ namespace Swag\MigrationMagento\Migration\Mapping\Registry;
 
 use Shopware\Core\Framework\Log\Package;
 
+/**
+ * @phpstan-type MappingArray array<string, array{iso3: string, name: string, translations: array<string, string>}>
+ * @template-extends AbstractMappingRegistry<MappingArray>
+ */
 #[Package('services-settings')]
 class CountryRegistry extends AbstractMappingRegistry
 {
     /**
-     * @var array
+     * @var MappingArray
      */
-    protected static $mapping = [
+    protected static array $mapping = [
         'AT' => [
             'iso3' => 'AUT',
             'name' => 'Austria',

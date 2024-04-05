@@ -12,13 +12,13 @@ use Shopware\Core\Framework\Log\Package;
 use Swag\MigrationMagento\Migration\Mapping\MagentoMappingServiceInterface;
 use Swag\MigrationMagento\Profile\Magento\DataSelection\DataSet\MediaDataSet;
 use Swag\MigrationMagento\Profile\Magento\DataSelection\DefaultEntities as MagentoDefaults;
+use SwagMigrationAssistant\Exception\MigrationException;
 use SwagMigrationAssistant\Migration\Converter\ConvertStruct;
 use SwagMigrationAssistant\Migration\DataSelection\DefaultEntities;
 use SwagMigrationAssistant\Migration\Logging\Log\EmptyNecessaryFieldRunLog;
 use SwagMigrationAssistant\Migration\Logging\LoggingServiceInterface;
 use SwagMigrationAssistant\Migration\Media\MediaFileServiceInterface;
 use SwagMigrationAssistant\Migration\MigrationContextInterface;
-use SwagMigrationAssistant\Profile\Shopware\Exception\ParentEntityForChildNotFoundException;
 
 #[Package('services-settings')]
 abstract class CategoryConverter extends MagentoConverter
@@ -151,7 +151,7 @@ abstract class CategoryConverter extends MagentoConverter
             );
 
             if ($parentMapping === null) {
-                throw new ParentEntityForChildNotFoundException(DefaultEntities::CATEGORY, $this->entity_id);
+                throw MigrationException::parentEntityForChildNotFound(DefaultEntities::CATEGORY, $this->entity_id);
             }
 
             $this->mappingIds[] = $parentMapping['id'];

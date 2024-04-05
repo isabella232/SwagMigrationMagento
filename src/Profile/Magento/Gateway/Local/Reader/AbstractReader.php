@@ -42,9 +42,6 @@ abstract class AbstractReader implements ReaderInterface
         return null;
     }
 
-    /**
-     * @psalm-suppress RedundantConditionGivenDocblockType
-     */
     protected function setConnection(MigrationContextInterface $migrationContext): void
     {
         if ($this->connection instanceof Connection && $this->connection->isConnected()) {
@@ -104,9 +101,6 @@ abstract class AbstractReader implements ReaderInterface
         }
     }
 
-    /**
-     * @psalm-suppress MissingParamType
-     */
     protected function buildArrayFromChunks(array &$array, array $path, string $fieldKey, $value): void
     {
         $key = \array_shift($path);

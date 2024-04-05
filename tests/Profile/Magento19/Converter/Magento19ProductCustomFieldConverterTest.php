@@ -5,7 +5,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Swag\MigrationMagento\Test\Profile\Magento\Converter;
+namespace Swag\MigrationMagento\Test\Profile\Magento19\Converter;
 
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Framework\Context;

@@ -7,6 +7,7 @@
 
 namespace Swag\MigrationMagento\Test\Profile\Magento2\Converter;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Checkout\Cart\Tax\TaxCalculator;
 use Shopware\Core\Framework\Context;
@@ -29,6 +30,7 @@ use SwagMigrationAssistant\Migration\MigrationContextInterface;
 use SwagMigrationAssistant\Profile\Shopware\Exception\AssociationEntityRequiredMissingException;
 use SwagMigrationAssistant\Profile\Shopware\Premapping\OrderDeliveryStateReader;
 use SwagMigrationAssistant\Test\Mock\Migration\Logging\DummyLoggingService;
+use function round;
 
 #[Package('services-settings')]
 class Magento2OrderConverterTest extends TestCase
@@ -665,9 +667,7 @@ class Magento2OrderConverterTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider requiredProperties
-     */
+    #[DataProvider('requiredProperties')]
     public function testConvertWithoutRequiredProperties(string $property, ?string $value): void
     {
         $orderData = require __DIR__ . '/../../../_fixtures/order_data.php';

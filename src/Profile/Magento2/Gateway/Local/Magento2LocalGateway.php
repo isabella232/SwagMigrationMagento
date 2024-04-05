@@ -246,9 +246,6 @@ SQL;
         return $connection->executeQuery($sql)->fetchAllAssociative();
     }
 
-    /**
-     * @psalm-suppress DocblockTypeContradiction
-     */
     public function readCarriers(MigrationContextInterface $migrationContext): array
     {
         $connection = $this->connectionFactory->createDatabaseConnection($migrationContext);

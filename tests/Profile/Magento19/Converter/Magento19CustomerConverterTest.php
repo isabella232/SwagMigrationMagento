@@ -5,8 +5,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Swag\MigrationMagento\Test\Profile\Magento\Converter;
+namespace Swag\MigrationMagento\Test\Profile\Magento19\Converter;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Defaults;
 use Shopware\Core\Framework\Context;
@@ -209,9 +210,7 @@ class Magento19CustomerConverterTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider requiredProperties
-     */
+    #[DataProvider('requiredProperties')]
     public function testConvertWithoutRequiredProperties(string $property, ?string $value): void
     {
         $customerData = require __DIR__ . '/../../../_fixtures/customer_data.php';
@@ -330,9 +329,7 @@ class Magento19CustomerConverterTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider requiredAddressProperties
-     */
+    #[DataProvider('requiredAddressProperties')]
     public function testConvertWithoutRequiredAddressPropertiesForBillingDefault(string $property, ?string $value): void
     {
         $customerData = require __DIR__ . '/../../../_fixtures/customer_data.php';
@@ -368,9 +365,7 @@ class Magento19CustomerConverterTest extends TestCase
         static::assertSame($logs[1]['parameters']['replacementField'], 'default shipping address');
     }
 
-    /**
-     * @dataProvider requiredAddressProperties
-     */
+    #[DataProvider('requiredAddressProperties')]
     public function testConvertWithoutRequiredAddressPropertiesForShippingDefault(string $property, ?string $value): void
     {
         $customerData = require __DIR__ . '/../../../_fixtures/customer_data.php';
@@ -406,9 +401,7 @@ class Magento19CustomerConverterTest extends TestCase
         static::assertSame($logs[1]['parameters']['replacementField'], 'default billing address');
     }
 
-    /**
-     * @dataProvider requiredAddressProperties
-     */
+    #[DataProvider('requiredAddressProperties')]
     public function testConvertWithoutRequiredAddressPropertiesForDefaultBillingAndShipping(string $property, ?string $value): void
     {
         $customerData = require __DIR__ . '/../../../_fixtures/customer_data.php';

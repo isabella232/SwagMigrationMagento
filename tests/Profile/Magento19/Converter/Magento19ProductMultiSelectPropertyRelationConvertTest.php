@@ -5,8 +5,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Swag\MigrationMagento\Test\Profile\Magento\Converter;
+namespace Swag\MigrationMagento\Test\Profile\Magento19\Converter;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\Log\Package;
@@ -83,9 +84,7 @@ class Magento19ProductMultiSelectPropertyRelationConvertTest extends TestCase
         static::assertTrue($supportsDefinition);
     }
 
-    /**
-     * @dataProvider getNormalDataProvider
-     */
+    #[DataProvider('getNormalDataProvider')]
     public function testConvert(array $data): void
     {
         $relationUuid = $this->mappingService->createMapping($this->connection->getId(), DefaultEntities::PROPERTY_GROUP_OPTION, $data['option_id']);
@@ -113,9 +112,7 @@ class Magento19ProductMultiSelectPropertyRelationConvertTest extends TestCase
         return $returnData;
     }
 
-    /**
-     * @dataProvider getWithoutMappingDataProvider
-     */
+    #[DataProvider('getWithoutMappingDataProvider')]
     public function testConvertWithoutMapping(array $data, bool $withoutProductMapping, bool $withoutPropertyMapping): void
     {
         if (!$withoutProductMapping) {
